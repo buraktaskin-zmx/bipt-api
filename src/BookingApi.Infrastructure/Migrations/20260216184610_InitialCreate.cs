@@ -102,9 +102,9 @@ namespace BookingApi.Infrastructure.Migrations
                 columns: new[] { "BadgeId", "BadgeName", "Condition", "Level" },
                 values: new object[,]
                 {
-                    { "B1", "🥉 Bronz Sosyal", "total_points >= 200", 1 },
-                    { "B2", "🥈 Gümüş Sosyal", "total_points >= 600", 2 },
-                    { "B3", "🥇 Altın Sosyal", "total_points >= 1000", 3 }
+                    { "B1", "🥉 Bronz Sosyal", "", 1 },
+                    { "B2", "🥈 Gümüş Sosyal", "", 2 },
+                    { "B3", "🥇 Altın Sosyal", "", 3 }
                 });
 
             migrationBuilder.InsertData(

@@ -113,7 +113,7 @@ namespace BookingApi.Infrastructure.Migrations
                         {
                             EventId = "E-7",
                             Date = new DateTime(2026, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Messages = 40,
+                            Messages = 410,
                             Reactions = 21,
                             UniqueGroups = 3,
                             UserId = "U1"
@@ -546,7 +546,7 @@ namespace BookingApi.Infrastructure.Migrations
                             UserId = "U1",
                             AsOfDate = new DateTime(2026, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             Messages7d = 169,
-                            MessagesToday = 40,
+                            MessagesToday = 410,
                             Reactions7d = 108,
                             ReactionsToday = 21,
                             UniqueGroupsToday = 3

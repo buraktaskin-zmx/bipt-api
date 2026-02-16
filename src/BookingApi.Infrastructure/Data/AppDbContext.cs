@@ -266,7 +266,7 @@ public class AppDbContext : DbContext
             new ActivityEvent { EventId = "E-4", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 9), DateTimeKind.Utc), Messages = 27, Reactions = 25, UniqueGroups = 1 },
             new ActivityEvent { EventId = "E-5", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 10), DateTimeKind.Utc), Messages = 19, Reactions = 8, UniqueGroups = 1 },
             new ActivityEvent { EventId = "E-6", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 11), DateTimeKind.Utc), Messages = 25, Reactions = 19, UniqueGroups = 1 },
-            new ActivityEvent { EventId = "E-7", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 12), DateTimeKind.Utc), Messages = 40, Reactions = 21, UniqueGroups = 3 }
+            new ActivityEvent { EventId = "E-7", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 12), DateTimeKind.Utc), Messages = 400, Reactions = 21, UniqueGroups = 3 }
         );
 
 
@@ -278,7 +278,7 @@ public class AppDbContext : DbContext
             {
                 UserId = "U1",
                 AsOfDate = asOfDate,
-                MessagesToday = 40,
+                MessagesToday = 400,
                 ReactionsToday = 21,
                 UniqueGroupsToday = 3,
                 Messages7d = 169,

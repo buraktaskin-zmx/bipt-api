@@ -69,7 +69,7 @@ namespace BookingApi.Infrastructure.Migrations
                     { "E-4", new DateTime(2026, 3, 9, 0, 0, 0, 0, DateTimeKind.Utc), 27, 25, 1, "U1" },
                     { "E-5", new DateTime(2026, 3, 10, 0, 0, 0, 0, DateTimeKind.Utc), 19, 8, 1, "U1" },
                     { "E-6", new DateTime(2026, 3, 11, 0, 0, 0, 0, DateTimeKind.Utc), 25, 19, 1, "U1" },
-                    { "E-7", new DateTime(2026, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc), 40, 21, 3, "U1" }
+                    { "E-7", new DateTime(2026, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc), 20, 21, 3, "U1" }
                 });
 
             migrationBuilder.InsertData(
@@ -77,7 +77,7 @@ namespace BookingApi.Infrastructure.Migrations
                 columns: new[] { "AsOfDate", "UserId", "Messages7d", "MessagesToday", "Reactions7d", "ReactionsToday", "UniqueGroupsToday" },
                 values: new object[,]
                 {
-                    { new DateTime(2026, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc), "U1", 169, 40, 108, 21, 3 },
+                    { new DateTime(2026, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc), "U1", 169, 22, 108, 21, 3 },
                     { new DateTime(2026, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc), "U2", 150, 26, 109, 8, 1 },
                     { new DateTime(2026, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc), "U3", 185, 23, 88, 16, 2 },
                     { new DateTime(2026, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc), "U4", 218, 38, 129, 13, 1 },
