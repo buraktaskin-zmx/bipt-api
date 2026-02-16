@@ -19,7 +19,8 @@ public class AppDbContext : DbContext
     public DbSet<Badge> Badges { get; set; } // ← YENİ
     public DbSet<BadgeAward> BadgeAwards { get; set; } // ← YENİ
     public DbSet<Challenge> Challenges { get; set; } // ← YENİ
-
+    public DbSet<ActivityEvent> ActivityEvents { get; set; }
+    public DbSet<UserState> UserStates { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,7 +41,21 @@ public class AppDbContext : DbContext
             entity.Property(e => e.ChallengeName).HasMaxLength(100).IsRequired();
             entity.Property(e => e.Condition).HasMaxLength(200).IsRequired();
         });
+        modelBuilder.Entity<ActivityEvent>(entity =>
+        {
+            entity.HasKey(e => e.EventId);
+            entity.Property(e => e.EventId).HasMaxLength(20);
+            entity.Property(e => e.UserId).HasMaxLength(10).IsRequired();
+            entity.HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
+        });
 
+        // UserState - Composite Key
+        modelBuilder.Entity<UserState>(entity =>
+        {
+            entity.HasKey(e => new { e.UserId, e.AsOfDate });
+            entity.Property(e => e.UserId).HasMaxLength(10);
+            entity.HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
+        });
         // Group configuration
         modelBuilder.Entity<Group>(entity =>
         {
@@ -218,5 +233,74 @@ public class AppDbContext : DbContext
         IsActive = true
     }
 );
+
+
+        // ActivityEvents - UTC ile
+        modelBuilder.Entity<ActivityEvent>().HasData(
+            new ActivityEvent { EventId = "E-1", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 6), DateTimeKind.Utc), Messages = 13, Reactions = 7, UniqueGroups = 1 },
+            new ActivityEvent { EventId = "E-2", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 7), DateTimeKind.Utc), Messages = 33, Reactions = 5, UniqueGroups = 3 },
+            new ActivityEvent { EventId = "E-3", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 8), DateTimeKind.Utc), Messages = 12, Reactions = 23, UniqueGroups = 3 },
+            new ActivityEvent { EventId = "E-4", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 9), DateTimeKind.Utc), Messages = 27, Reactions = 25, UniqueGroups = 1 },
+            new ActivityEvent { EventId = "E-5", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 10), DateTimeKind.Utc), Messages = 19, Reactions = 8, UniqueGroups = 1 },
+            new ActivityEvent { EventId = "E-6", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 11), DateTimeKind.Utc), Messages = 25, Reactions = 19, UniqueGroups = 1 },
+            new ActivityEvent { EventId = "E-7", UserId = "U1", Date = DateTime.SpecifyKind(new DateTime(2026, 3, 12), DateTimeKind.Utc), Messages = 40, Reactions = 21, UniqueGroups = 3 }
+        );
+
+
+
+        var asOfDate = DateTime.SpecifyKind(new DateTime(2026, 3, 12), DateTimeKind.Utc);
+
+        modelBuilder.Entity<UserState>().HasData(
+            new UserState
+            {
+                UserId = "U1",
+                AsOfDate = asOfDate,
+                MessagesToday = 40,
+                ReactionsToday = 21,
+                UniqueGroupsToday = 3,
+                Messages7d = 169,
+                Reactions7d = 108
+            },
+            new UserState
+            {
+                UserId = "U2",
+                AsOfDate = asOfDate,
+                MessagesToday = 26,
+                ReactionsToday = 8,
+                UniqueGroupsToday = 1,
+                Messages7d = 150,
+                Reactions7d = 109
+            },
+            new UserState
+            {
+                UserId = "U3",
+                AsOfDate = asOfDate,
+                MessagesToday = 23,
+                ReactionsToday = 16,
+                UniqueGroupsToday = 2,
+                Messages7d = 185,
+                Reactions7d = 88
+            },
+            new UserState
+            {
+                UserId = "U4",
+                AsOfDate = asOfDate,
+                MessagesToday = 38,
+                ReactionsToday = 13,
+                UniqueGroupsToday = 1,
+                Messages7d = 218,
+                Reactions7d = 129
+            },
+            new UserState
+            {
+                UserId = "U5",
+                AsOfDate = asOfDate,
+                MessagesToday = 29,
+                ReactionsToday = 11,
+                UniqueGroupsToday = 1,
+                Messages7d = 104,
+                Reactions7d = 70
+            }
+        );
     }
 }

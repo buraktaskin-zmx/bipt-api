@@ -15,7 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Service registration'ları kaldırdık (henüz yok)
 builder.Services.AddScoped<ILeaderboardService, LeaderboardService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
-
+builder.Services.AddScoped<IMetricsService, MetricsService>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
