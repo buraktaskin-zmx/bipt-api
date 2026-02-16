@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BookingApi.Domain.Entities
+namespace BookingApi.Application.DTOs
 {
-    public class ChallengeAward
+    public class ChallengeAwardDto
     {
         public string AwardId { get; set; } = string.Empty;
         public string UserId { get; set; } = string.Empty;
         public string ChallengeId { get; set; } = string.Empty;
-        public DateTime AsOfDate { get; set; }
+        public string ChallengeName { get; set; } = string.Empty;
+        public int RewardPoints { get; set; }
         public bool IsSelected { get; set; }
-
-        // Navigation
-        public User? User { get; set; }
-        public Challenge? Challenge { get; set; }
+        public DateTime AsOfDate { get; set; }
     }
 }

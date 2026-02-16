@@ -21,7 +21,8 @@ public class AppDbContext : DbContext
     public DbSet<Challenge> Challenges { get; set; } // ← YENİ
     public DbSet<ActivityEvent> ActivityEvents { get; set; }
     public DbSet<UserState> UserStates { get; set; }
-
+    public DbSet<ChallengeAward> ChallengeAwards { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -46,6 +47,28 @@ public class AppDbContext : DbContext
             entity.HasKey(e => e.EventId);
             entity.Property(e => e.EventId).HasMaxLength(20);
             entity.Property(e => e.UserId).HasMaxLength(10).IsRequired();
+            entity.HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
+        });
+
+        modelBuilder.Entity<ChallengeAward>(entity =>
+        {
+            entity.HasKey(e => e.AwardId);
+            entity.Property(e => e.AwardId).HasMaxLength(20);
+            entity.Property(e => e.UserId).HasMaxLength(10).IsRequired();
+            entity.Property(e => e.ChallengeId).HasMaxLength(10).IsRequired();
+            entity.HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
+            entity.HasOne(e => e.Challenge).WithMany().HasForeignKey(e => e.ChallengeId);
+        });
+
+        // Notification configuration
+        modelBuilder.Entity<Notification>(entity =>
+        {
+            entity.HasKey(e => e.NotificationId);
+            entity.Property(e => e.NotificationId).HasMaxLength(20);
+            entity.Property(e => e.UserId).HasMaxLength(10).IsRequired();
+            entity.Property(e => e.Message).HasMaxLength(500).IsRequired();
+            entity.Property(e => e.Type).HasMaxLength(20).IsRequired();
+            entity.Property(e => e.SourceRef).HasMaxLength(50);
             entity.HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId);
         });
 

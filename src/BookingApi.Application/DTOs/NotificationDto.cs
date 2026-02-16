@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BookingApi.Domain.Entities
+namespace BookingApi.Application.DTOs
 {
-    public class Notification
+
+    public class NotificationDto
     {
         public string NotificationId { get; set; } = string.Empty;
         public string UserId { get; set; } = string.Empty;
@@ -12,8 +13,5 @@ namespace BookingApi.Domain.Entities
         public string Type { get; set; } = string.Empty; // "CHALLENGE" or "BADGE"
         public string SourceRef { get; set; } = string.Empty;
         public bool IsRead { get; set; }
-
-        // Navigation
-        public User? User { get; set; }
     }
 }
