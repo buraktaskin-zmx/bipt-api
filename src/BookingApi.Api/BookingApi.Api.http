@@ -1,0 +1,40 @@
+@host = https://localhost:7106
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImJlNDg0NzZjLTYzNzktNDE4OC04NGI2LTU5OTVlYWM5ZDcxMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImJ1cmFrQGdtYWlsIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6IkJ1cmFrMjAiLCJleHAiOjE3NzEyNzI4MTQsImlzcyI6IkJvb2tpbmdBcGkiLCJhdWQiOiJCb29raW5nQXBwIn0.Fit57XqV7W94kzPbbJ5eIpOqvPg4pp5mLBrpLLI5RWw
+
+### Register
+POST {{host}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "Test1234!",
+  "displayName": "Test User"
+}
+
+### Login
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "burak@gmail",
+  "password": "Burak2020"
+}
+
+### Create Booking
+POST {{host}}/api/bookings
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "service": "chatgpt",
+  "startTime": "2026-02-17T10:00:00Z",
+  "endTime": "2026-02-17T11:00:00Z"
+}
+
+### My Bookings
+GET {{host}}/api/bookings/my
+Authorization: Bearer {{token}}
+
+### Cancel Booking
+DELETE {{host}}/api/bookings/BURAYA_BOOKING_ID
+Authorization: Bearer {{token}}
